@@ -1,0 +1,11 @@
+name: Lockdupkeys
+version: '${project.version}'
+main: me.emiel.lockdupkeys.Lockdupkeys
+api-version: 1.19
+authors: [ Emiel ]
+description: Plugin for keycard doors
+commands:
+  getkey:
+    description: Get a key
+    usage: "/<command> <keytype>"
+    aliases: [ key ]
