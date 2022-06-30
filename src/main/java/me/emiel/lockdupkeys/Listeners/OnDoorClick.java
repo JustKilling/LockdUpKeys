@@ -28,11 +28,16 @@ public class OnDoorClick implements Listener {
         Player p = e.getPlayer();
 
 
-        if (clickedBlock.getType().equals(Material.IRON_DOOR) && e.getAction().equals(Action.RIGHT_CLICK_BLOCK) && e.getItem().getType().equals(Material.TRIPWIRE_HOOK)){
-            extracted(clickedBlock, p, e);
+        if (clickedBlock.getType().equals(Material.IRON_DOOR) && e.getAction().equals(Action.RIGHT_CLICK_BLOCK)){
+            if(e.getItem() == null) return;
+            if(e.getItem().getType().equals(Material.TRIPWIRE_HOOK)){
+                extracted(clickedBlock, p, e);
+            }
         } else if (clickedBlock.getType().equals(Material.IRON_DOOR) && e.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
             if(p.getGameMode() == GameMode.CREATIVE){
-                PersistentDataContainer pcb = p.getInventory().getItemInMainHand().getItemMeta().getPersistentDataContainer();
+                ItemMeta meta = p.getInventory().getItemInMainHand().getItemMeta();
+                if(meta == null) return;
+                PersistentDataContainer pcb = meta.getPersistentDataContainer();
                 NamespacedKey key = new NamespacedKey(Lockdupkeys.get_instance(), KeyCard.getPcbName());
                 if(!pcb.has(key, PersistentDataType.INTEGER)) return;
                 e.setCancelled(true);

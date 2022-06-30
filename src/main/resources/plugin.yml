@@ -9,3 +9,4 @@ commands:
     description: Get a key
     usage: "/<command> <keytype>"
     aliases: [ key ]
+    permission: lockdupkeys.getkey
